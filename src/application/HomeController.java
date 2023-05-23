@@ -1,8 +1,11 @@
 package application;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -56,11 +59,11 @@ public class HomeController implements Initializable {
 		difficulty.getItems().addAll("Easy", "Medium", "Hard");
 		Scanner s;
 		try {
-			s = new Scanner(new File("src/highScore.txt"));
+			s = new Scanner(getClass().getClassLoader().getResourceAsStream("highScore.txt"));
 			hardScore.setText("Hard: " + s.next());
 			mediumScore.setText("Medium: " + s.next());
 			easyScore.setText("Easy: " + s.next());
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

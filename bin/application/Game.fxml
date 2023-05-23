@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GameController">
+   <children>
+      <AnchorPane layoutY="4.0" onMouseClicked="#subtractScore" prefHeight="801.0" prefWidth="1198.0">
+         <children>
+            <Text fx:id="highScore" disable="true" fill="#66d373" layoutX="109.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="1051.6133117675781">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+      <Circle fx:id="targetThree" fill="#791b03" layoutX="61.0" layoutY="134.0" onMouseClicked="#changeThree" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="targetTwo" fill="#791b03" layoutX="61.0" layoutY="134.0" onMouseClicked="#changeTwo" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="targetOne" fill="#791b03" layoutX="61.0" layoutY="134.0" onMouseClicked="#changeOne" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text fx:id="score" layoutX="28.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score:" wrappingWidth="321.7803192138672">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Text>
+      <Text fx:id="time" layoutX="933.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" wrappingWidth="199.58001708984375">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Text>
+      <Text fx:id="finalScore" disable="true" layoutX="270.0" layoutY="415.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Score: ">
+         <font>
+            <Font size="58.0" />
+         </font>
+      </Text>
+      <Button fx:id="home" disable="true" layoutX="435.0" layoutY="548.0" mnemonicParsing="false" onAction="#home" opacity="0.0" text="Back To Home">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

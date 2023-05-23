@@ -1,10 +1,14 @@
 package application;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.Timer;
@@ -77,11 +81,13 @@ public class GameController implements Initializable {
 		scoreValue++;
 		score.setText("Score: " + scoreValue);
 	}
+
 	public void subtractScore() {
 		scoreValue--;
 		score.setText("Score: " + scoreValue);
 
 	}
+
 	public void switchToEnd(MouseEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("End.fxml"));
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -89,6 +95,7 @@ public class GameController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
+
 	public void home(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("Title.fxml"));
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -96,17 +103,18 @@ public class GameController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
+
 	public String checkHighScore(int value, int hold) {
-		if(value > hold) {
+		if (value > hold) {
 			return String.valueOf(value);
 		} else {
 			return String.valueOf(hold);
 		}
 	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
+
 		if (Data.getDifficulty().equals("Easy")) {
 			System.out.println("true");
 			targetOne.setRadius(50);
@@ -147,7 +155,7 @@ public class GameController implements Initializable {
 					finalScore.setOpacity(1);
 					finalScore.setText("Your Score: " + scoreValue);
 					try {
-						File f = new File("src/highScore.txt");
+						InputStream f = getClass().getClassLoader().getResourceAsStream("highScore.txt");
 						Scanner s = new Scanner(f);
 						if (Data.getDifficulty().equals("Hard")) {
 							replaceScores += s.nextInt();
@@ -172,7 +180,7 @@ public class GameController implements Initializable {
 						s.close();
 						if (scoreValue > highValue) {
 							highScore.setText("New High Score For " + Data.getDifficulty());
-							FileWriter overwrite = new FileWriter(f);
+							FileWriter overwrite = new FileWriter("highScore.txt");
 							System.out.println(replaceScores);
 							overwrite.write(replaceScores);
 							System.out.println("test");
