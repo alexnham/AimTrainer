@@ -2,10 +2,13 @@ package application;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -83,8 +86,10 @@ public class GameController implements Initializable {
 	}
 
 	public void subtractScore() {
+		if(scoreValue > 0) {
 		scoreValue--;
 		score.setText("Score: " + scoreValue);
+		}
 
 	}
 
@@ -180,12 +185,14 @@ public class GameController implements Initializable {
 						s.close();
 						if (scoreValue > highValue) {
 							highScore.setText("New High Score For " + Data.getDifficulty());
-							FileWriter overwrite = new FileWriter("highScore.txt");
 							System.out.println(replaceScores);
-							overwrite.write(replaceScores);
-							System.out.println("test");
-							overwrite.flush();
-							overwrite.close();
+							URL url = getClass().getClassLoader().getResource("highScore.txt");
+							String path = url.getPath();
+							FileOutputStream o = new FileOutputStream(path);
+							byte[] data = replaceScores.getBytes();
+							o.write(data);
+							o.flush();
+							o.close();
 
 						}
 					} catch (Exception e) {
